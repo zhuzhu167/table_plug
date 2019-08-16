@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		 crossorigin="anonymous">
+	</head>
+	<body>
+		<table id="table-product" class="table table-bordered">
+			<thead>
+				<tr>
+					<th>货号/类别</th>
+					<th>商品名</th>
+					<th>规格/单位</th>
+					<th>剂型</th>
+					<th>批准文号</th>
+					<th>批发价</th>
+					<th>指导价</th>
+					<th>零售价</th>
+					<th>总库存</th>
+					<th>货位号</th>
+
+					<th>含麻</th>
+					<th>含特</th>
+					<th>处方</th>
+					<th>凭处方单销售</th>
+					<th>医保</th>
+					<th>网销</th>
+					<th>网销</th>
+					<th>审核</th>
+					<th>生产单位</th>
+					<th>操作</th>
+
+					<th>提成</th>
+					<th>提成比例%</th>
+					<th>提成金额</th>
+					<th>利润</th>
+					<th>利润率%</th>
+					<th>通用名</th>
+					<th>供应商</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<script type="text/javascript" src="js/jQuery2.js"></script>
+		<script type="text/javascript" src="js/modelDriver.js"></script>
+		<script type="text/javascript">
+			var config = {
+				"productCode": {},
+				"productName": {},
+				"proviceStandard": {},
+				"dosageForm": {},
+				"approvalNumber": {},
+				"tradePrice": {},
+				"retailPrice": {},
+				"localRetailPrice": {},
+				"totalStorage": {},
+				"goodsAllocation": {},
+				"isEphedrine": {
+					render: function($obj, key, val) {
+						if (val == 0) {
+							$($obj).empty().append("<input type='checkbox' checked>");
+						} else if (val == 1) {
+							$($obj).empty().append("<input type='checkbox' >");
+						}
+					},
+				},
+				"isGMP": {
+					render: function($obj, key, val) {
+						if (val == 0) {
+							$($obj).empty().append("<input type='checkbox' checked>");
+						} else if (val == 1) {
+							$($obj).empty().append("<input type='checkbox' >");
+						}
+					},
+				},
+				"isRxDrug": {
+					render: function($obj, key, val) {
+						if (val == 0) {
+							$($obj).empty().append("<input type='checkbox' checked>");
+						} else if (val == 1) {
+							$($obj).empty().append("<input type='checkbox' >");
+						}
+					},
+				},
+				"isNeedPrescription": {
+					render: function($obj, key, val) {
+						if (val == 0) {
+							$($obj).empty().append("<input type='checkbox' checked>");
+						} else if (val == 1) {
+							$($obj).empty().append("<input type='checkbox' >");
+						}
+					},
+				},
+				"isYiBao": {
+					render: function($obj, key, val) {
+						if (val == 0) {
+							$($obj).empty().append("<input type='checkbox' checked>");
+						} else if (val == 1) {
+							$($obj).empty().append("<input type='checkbox' >");
+						}
+					},
+				},
+				"isWebSale": {
+					render: function($obj, key, val) {
+						if (val == 0) {
+							$($obj).empty().append("<input type='checkbox' checked>");
+						} else if (val == 1) {
+							$($obj).empty().append("<input type='checkbox' >");
+						}
+					},
+				},
+				"afterScatteredUnit": {
+					render: function($obj, key, val) {
+						if (val == 0) {
+							$($obj).empty().append("<input type='checkbox' checked>");
+						} else if (val == 1) {
+							$($obj).empty().append("<input type='checkbox' >");
+						}
+					},
+				},
+				"isAudit": {
+					render: function($obj, key, val) {
+						if (val == 0) {
+							$($obj).empty().append("<input type='checkbox' checked>");
+						} else if (val == 1) {
+							$($obj).empty().append("<input type='checkbox' >");
+						}
+					},
+				},
+				"produceFactory": {},
+				"isMindDrug": {},
+				"isCommission": {},
+				"commissionRadio": {},
+				"commissionAmount": {},
+				"profit": {},
+				"profitRate": {},
+				"genericName": {},
+				"supplierName": {},
+			};
+			$(function() {
+				console.log()
+				for (var i = 1; i <= 100; i++) {
+					var j = 1;
+					var str = "<tr data-location-y='" + i + "'>";
+					for (j; j <= 27; j++) {
+						str += "<td data-location-x='" + j + "'>123</td>"
+					}
+					str += "</tr>";
+					$("#table-product").find('tbody').append(str)
+				}
+				$.getJSON("JSON/data.json", function(data) {
+					var meta = data;
+					ModelDrider.init("#table-product", meta.rows, config);
+				});
+			})
+		</script>
+	</body>
+</html>
